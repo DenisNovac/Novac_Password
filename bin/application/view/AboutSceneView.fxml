@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="310.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllers.AboutSceneViewController">
+   <children>
+      <TextArea fx:id="textArea" editable="false" layoutX="150.0" layoutY="60.0" prefHeight="280.0" prefWidth="500.0" wrapText="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <RadioButton fx:id="engRadio" layoutX="41.0" layoutY="288.0" mnemonicParsing="false" selected="true" text="English">
+         <toggleGroup>
+            <ToggleGroup fx:id="cute" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="ruRadio" layoutX="139.0" layoutY="288.0" mnemonicParsing="false" text="Русский" toggleGroup="$cute" />
+   </children>
+</AnchorPane>
