@@ -3,7 +3,7 @@ package application.logic;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-public class Hasher {
+public abstract class Hasher {
 	final private static int RADIX=16; //основание системы - всегда константа
 	
 	private static String ALGORITHM;
@@ -16,10 +16,12 @@ public class Hasher {
 			MD = MessageDigest.getInstance(ALGORITHM); 
 		}catch(Exception e){System.out.println(e);}
 		DIGLENGTH=MD.getDigestLength();
+		
 		FileWorker.setDigLength(DIGLENGTH); //отдаёт длину хеша классу FileWorker, которому она необходима
 	}
 	
-	protected static String toHash(String s){ //alg: md5 SHA-256 SHA-512
+	protected static String toHash(String s){ //метод ввода в хеш
+		//alg tested: md5 SHA-256 SHA-512
 		
 		byte[] bytes = s.getBytes();
 		bytes = MD.digest(bytes); //хешируем

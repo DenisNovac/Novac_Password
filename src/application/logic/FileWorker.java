@@ -2,19 +2,22 @@ package application.logic;
 
 import java.io.*;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 
-public class FileWorker {
+/*
+Для работы с этим классом в графическом режиме потребуется некоторое преобразвование в аналог ObservableList в JavaFX.
+В классе используются исключительно ArrayList для поддержания переносимости и простоты разработки. 
+*/
+
+public abstract class FileWorker {
 	private static int DIGLENGTH; //стандартная длина хеш-сообщения, установленного по умолчанию
 	public static boolean isBackupNeeded=false;
 	
-	protected static void setDigLength(int dl){
+	protected static void setDigLength(int dl){ //метод вызывается при установке Hasher.setAlgorithm() из метода Main. 
 		DIGLENGTH=dl;
 	}
 
-	public static String save(ObservableList<Line> list, String path, String password){ //метод для сохранения БД
+	public static String save(ArrayList<Line> list, String path, String password){ //метод для сохранения БД
 		File bdFile;
 		try { //записываем бд в файл
 			bdFile = new File(path); //получаем файл по полученному пути
@@ -44,7 +47,7 @@ public class FileWorker {
 	
 	
 	
-	public static ObservableList<Line> openDB(String path, String password) {
+	public static ArrayList<Line> openDB(String path, String password) {
 		File bdFile = new File(path);
 		//проверяем пароль
 		if (!decodeFile(bdFile,password)){
@@ -53,7 +56,7 @@ public class FileWorker {
 		
 		encodeFile(bdFile,password);//расшифровываем файл если пароль подошёл
 		
-		ObservableList<Line> lines = FXCollections.observableArrayList(); //создаём лист - по сути, это наша бд
+		ArrayList<Line> lines = new ArrayList<Line>();//создаём лист - по сути, это наша бд
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(bdFile));){
 			StringToWords stringToWords; //добавляем экземпляр-декодер

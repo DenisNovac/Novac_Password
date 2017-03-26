@@ -1,6 +1,8 @@
 package application.view.controllers;
 
 import java.io.File;
+import java.nio.charset.Charset;
+
 import application.Main;
 import application.logic.*;
 import javafx.collections.FXCollections;
@@ -14,7 +16,7 @@ public class LoginViewController{
 	@FXML
 	private Button pathButton, openButton, newButton;
 	@FXML
-	private Label infoLabel;
+	private Label infoLabel, encodingLabel;
 	@FXML
 	private TextField pathField;
 	@FXML
@@ -30,6 +32,8 @@ public class LoginViewController{
 		fileChooser = new FileChooser(); //объект, получающий файл из проводника
 		fileChooser.setTitle("Open Resource File");//заголовок окошко выбора файла
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Database file", "*.npdb")); //выбираем разрешение. НЕ ЗАБУДЬ ЗВЁЗДОЧКУ ПИДР
+		encodingLabel.setText("System encoding: "+Charset.defaultCharset().toString());
+		
 		
 		pathButton.setOnAction((e)->{
 			fileChooser.setInitialDirectory(new File(".")); //открывает папку, откуда запущена программа
@@ -74,7 +78,9 @@ public class LoginViewController{
 			if (backupCB.isSelected()) FileWorker.isBackupNeeded=true;
 			else FileWorker.isBackupNeeded=false;
 			
-			DBViewController.lines=FileWorker.openDB(pathField.getText(),passwordField.getText());
+			DBViewController.lines=ArrayListConverter.toObservable( //преобразуем полученный Аррей в Observable
+					FileWorker.openDB( pathField.getText(),passwordField.getText() )
+			);
 			
 			if (DBViewController.lines==null) {
 				infoLabel.setText("Not correct password");

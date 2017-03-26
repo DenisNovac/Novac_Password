@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 	final private String ALGORITHM = "SHA-512"; //алгоритм хеширования, используемый в программе, достаточно поменять его тут
 	

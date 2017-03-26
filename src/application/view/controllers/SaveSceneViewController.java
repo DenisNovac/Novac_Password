@@ -1,6 +1,8 @@
 package application.view.controllers;
 
 import java.io.File;
+import java.nio.charset.Charset;
+
 import application.Main;
 import application.logic.*;
 import javafx.fxml.FXML;
@@ -17,13 +19,13 @@ public class SaveSceneViewController {
 	@FXML
 	TextField pathField;
 	@FXML
-	Label infoLabel;
+	Label infoLabel, encodingLabel;
 	
 	@FXML
 	public void initialize(){
 		DBViewController.lines.remove(Main.LNULL); //убираем пустую отладочную линию, чтобы не копились
 		infoLabel.setText("Be sure to use strong password");
-		
+		encodingLabel.setText("System encoding: "+Charset.defaultCharset().toString());
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select file .npdb or create new");
 		fileChooser.setInitialDirectory(new File("."));
@@ -59,7 +61,11 @@ public class SaveSceneViewController {
 				infoLabel.setText("Incorrect path: Input some .npdb file name!\n");
 				return;
 			}
-			String answer=FileWorker.save(DBViewController.lines, pathField.getText(),passField.getText());
+			
+			String answer=FileWorker.save( //преобразуем наш observable в arraylist
+					ArrayListConverter.toArray( DBViewController.lines ), 
+					pathField.getText(),passField.getText());
+			
 			infoLabel.setText(answer);
 		});
 		

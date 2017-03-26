@@ -2,7 +2,9 @@ package application.logic;
 
 import java.util.ArrayList;
 
-public class StringToWords {
+class StringToWords { //бьет строку на отдельные слова по любому разделителю i раз, потом возвращает остаток
+	
+	private char separator='|'; //разделитель
 	private ArrayList<String> answer;
 	private int iterator;
 	private String string;
@@ -32,7 +34,7 @@ public class StringToWords {
 				iterator--;
 				return;
 			}
-			space = string.indexOf('|'); //использую разделитель |
+			space = string.indexOf(separator); //использую разделитель |
 			String oneWord = string.substring(0,space);
 			//System.out.println("One word:["+oneWord+"]"); //для отладки
 			answer.add(oneWord);

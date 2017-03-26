@@ -7,12 +7,12 @@
 
 <AnchorPane prefHeight="359.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllers.AddSceneViewController">
    <children>
-      <Button fx:id="saveButton" layoutX="58.0" layoutY="258.0" mnemonicParsing="false" text="Save" />
-      <Button fx:id="cancelButton" layoutX="135.0" layoutY="258.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="saveButton" layoutX="61.0" layoutY="241.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancelButton" layoutX="138.0" layoutY="241.0" mnemonicParsing="false" text="Cancel" />
       <TextField fx:id="nameField" layoutX="51.0" layoutY="72.0" promptText="name" />
       <TextField fx:id="passwordField" layoutX="51.0" layoutY="122.0" promptText="password" />
       <TextField fx:id="descriptionField" layoutX="51.0" layoutY="173.0" promptText="description" />
       <Button fx:id="randomButton" layoutX="212.0" layoutY="122.0" mnemonicParsing="false" text="R" />
-      <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="302.0" prefHeight="48.0" prefWidth="187.0" wrapText="true" />
+      <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="273.0" prefHeight="77.0" prefWidth="187.0" wrapText="true" />
    </children>
 </AnchorPane>

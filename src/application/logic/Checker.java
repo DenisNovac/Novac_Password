@@ -2,14 +2,14 @@ package application.logic;
 
 import java.util.regex.*;
 
-public class Checker {
+public abstract class Checker {
 	
 	public static Boolean pathOk(String path){ //проверка расширения файла
 		if (getExtension(path).equals("npdb")) return true;
 		else return false;
 	}
 	
-	public static String getExtension(String path){
+	public static String getExtension(String path){ //получение расширения файла
 		String ext=null;
 		if ( path.lastIndexOf('.')!=-1 & path.lastIndexOf('.')!=0 )
 			ext = path.substring(path.lastIndexOf('.')+1);

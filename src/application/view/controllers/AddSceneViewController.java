@@ -17,6 +17,7 @@ public class AddSceneViewController{
 	
 	@FXML
 	public void initialize(){
+		infoLabel.setText("If you are wanted to use app in different OSs with different encodings, use latinic charatcters");
 		
 		DBViewController.lines.remove(Main.LNULL); //убираем пустую отладочную линию, чтобы не копились
 		
@@ -62,4 +63,6 @@ public class AddSceneViewController{
 	protected static void setLine(Line l){ //сюда передаём линию, которую желаем изменить
 		inChanging=l;
 	}
+	
+	
 }

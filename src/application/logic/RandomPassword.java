@@ -1,6 +1,7 @@
 package application.logic;
 
-public class RandomPassword {
+
+public abstract class RandomPassword { //метод рандомит пароль из n символов
 	public static String generate (int n){
 		String password=" ";
 		int underlines=2;

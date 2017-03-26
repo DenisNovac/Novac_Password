@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="175.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllers.SaveSceneViewController">
+<AnchorPane prefHeight="187.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllers.SaveSceneViewController">
    <children>
       <Button fx:id="cancelButton" layoutX="210.0" layoutY="118.0" mnemonicParsing="false" text="Cancel" />
       <Button fx:id="pathButton" layoutX="332.0" layoutY="82.0" mnemonicParsing="false" text="...">
@@ -19,5 +19,10 @@
       <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="153.0" prefHeight="17.0" prefWidth="374.0" />
       <TextField fx:id="passField" layoutX="127.0" layoutY="14.0" promptText="password" />
       <TextField fx:id="confirmField" layoutX="126.0" layoutY="49.0" promptText="confirm" />
+      <Label fx:id="encodingLabel" layoutX="13.0" layoutY="170.0" opacity="0.52" prefHeight="17.0" prefWidth="214.0" text="utf-8">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
