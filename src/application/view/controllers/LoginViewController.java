@@ -1,8 +1,6 @@
 package application.view.controllers;
 
 import java.io.File;
-import java.nio.charset.Charset;
-
 import application.Main;
 import application.logic.*;
 import javafx.collections.FXCollections;
@@ -16,7 +14,7 @@ public class LoginViewController{
 	@FXML
 	private Button pathButton, openButton, newButton;
 	@FXML
-	private Label infoLabel, encodingLabel;
+	private Label infoLabel;
 	@FXML
 	private TextField pathField;
 	@FXML
@@ -32,7 +30,6 @@ public class LoginViewController{
 		fileChooser = new FileChooser(); //объект, получающий файл из проводника
 		fileChooser.setTitle("Open Resource File");//заголовок окошко выбора файла
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Database file", "*.npdb")); //выбираем разрешение. НЕ ЗАБУДЬ ЗВЁЗДОЧКУ ПИДР
-		encodingLabel.setText("System encoding: "+Charset.defaultCharset().toString());
 		
 		
 		pathButton.setOnAction((e)->{

@@ -17,10 +17,6 @@
       <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="99.0" layoutY="64.0" prefHeight="25.0" prefWidth="193.0" promptText="password" />
       <Button fx:id="openButton" layoutX="308.0" layoutY="64.0" mnemonicParsing="false" text="open" />
       <CheckBox fx:id="backupCB" layoutX="308.0" layoutY="94.0" mnemonicParsing="false" text="backup" />
-      <Label fx:id="encodingLabel" layoutX="14.0" layoutY="182.0" opacity="0.52" prefHeight="17.0" prefWidth="214.0" text="utf-8">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Label>
+      
    </children>
 </AnchorPane>

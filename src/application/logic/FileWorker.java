@@ -17,11 +17,16 @@ public abstract class FileWorker {
 		DIGLENGTH=dl;
 	}
 
+	
+	
 	public static String save(ArrayList<Line> list, String path, String password){ //метод для сохранения БД
 		File bdFile;
 		try { //записываем бд в файл
 			bdFile = new File(path); //получаем файл по полученному пути
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter(bdFile))){
+			
+			try (
+				 BufferedWriter bw = new BufferedWriter(  new OutputStreamWriter(new FileOutputStream(bdFile), "UTF-8")  )
+				){
 				bw.write(Hasher.toHash(password)+"\n"); //вписываем хешированный пароль в начало БД
 				for (Line l:list){
 					//если пользователь оставил поля пустыми - то пишем туда пробелы
@@ -47,6 +52,8 @@ public abstract class FileWorker {
 	
 	
 	
+	
+	
 	public static ArrayList<Line> openDB(String path, String password) {
 		File bdFile = new File(path);
 		//проверяем пароль
@@ -58,7 +65,9 @@ public abstract class FileWorker {
 		
 		ArrayList<Line> lines = new ArrayList<Line>();//создаём лист - по сути, это наша бд
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(bdFile));){
+		try (
+				BufferedReader br = new BufferedReader(  new InputStreamReader(new FileInputStream(bdFile), "UTF-8")  )
+			){
 			StringToWords stringToWords; //добавляем экземпляр-декодер
 			String readed=br.readLine(); //читаем первую линию и пропускаем её - это хешкод пароля
 			while(true){
@@ -84,6 +93,8 @@ public abstract class FileWorker {
 		return lines;
 	}//end of openDb method
 
+	
+	
 	
 	
 	
@@ -116,11 +127,13 @@ public abstract class FileWorker {
 	
 	
 	
+	
+	
 	public static boolean decodeFile(File inputFile, String password){ //метод для проверки пароля, вписанного в начало файла
 		String passHash;
 		String isPassHash;
 		//проверяем хэш
-		try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
+		try(BufferedReader br = new BufferedReader(   new InputStreamReader(new FileInputStream(inputFile), "UTF-8"))   ){
 			char[] isPassHashCh=new char[DIGLENGTH*2]; //Массив для будущего хэша, считанного из файла 
 			//128 - длина в char файла, шифрованного алгоритмом SHA-512
 			
@@ -149,6 +162,8 @@ public abstract class FileWorker {
 			return false;
 		}
 	}//end of decodeFile method
+	
+	
 	
 	
 	

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -17,12 +18,7 @@
       <Button fx:id="saveButton" layoutX="120.0" layoutY="118.0" mnemonicParsing="false" text="Save" />
       <TextField fx:id="pathField" layoutX="43.0" layoutY="81.0" opacity="0.6" prefHeight="25.0" prefWidth="270.0" promptText="Path and name" />
       <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="153.0" prefHeight="17.0" prefWidth="374.0" />
-      <TextField fx:id="passField" layoutX="127.0" layoutY="14.0" promptText="password" />
-      <TextField fx:id="confirmField" layoutX="126.0" layoutY="49.0" promptText="confirm" />
-      <Label fx:id="encodingLabel" layoutX="13.0" layoutY="170.0" opacity="0.52" prefHeight="17.0" prefWidth="214.0" text="utf-8">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Label>
+      <PasswordField fx:id="passField" layoutX="103.0" layoutY="14.0" prefHeight="25.0" prefWidth="197.0" promptText="password" />
+      <PasswordField fx:id="confirmField" layoutX="102.0" layoutY="47.0" prefHeight="25.0" prefWidth="197.0" promptText="confirm" />
    </children>
 </AnchorPane>

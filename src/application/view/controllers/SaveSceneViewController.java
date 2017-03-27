@@ -1,8 +1,6 @@
 package application.view.controllers;
 
 import java.io.File;
-import java.nio.charset.Charset;
-
 import application.Main;
 import application.logic.*;
 import javafx.fxml.FXML;
@@ -15,21 +13,20 @@ public class SaveSceneViewController {
 	@FXML
 	Button saveButton, pathButton, cancelButton;
 	@FXML
-	TextField passField,confirmField;
+	PasswordField passField,confirmField;
 	@FXML
 	TextField pathField;
 	@FXML
-	Label infoLabel, encodingLabel;
+	Label infoLabel;
 	
 	@FXML
 	public void initialize(){
 		DBViewController.lines.remove(Main.LNULL); //убираем пустую отладочную линию, чтобы не копились
 		infoLabel.setText("Be sure to use strong password");
-		encodingLabel.setText("System encoding: "+Charset.defaultCharset().toString());
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select file .npdb or create new");
 		fileChooser.setInitialDirectory(new File("."));
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("Database file", "*.npdb")); //выбираем разрешение. НЕ ЗАБУДЬ ЗВЁЗДОЧКУ ПИДР
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Database file", "*.npdb")); //выбираем разрешение
 		
 		
 		pathButton.setOnAction( (e) -> {
