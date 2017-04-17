@@ -64,6 +64,9 @@ public class SaveSceneViewController {
 					pathField.getText(),passField.getText());
 			
 			infoLabel.setText(answer);
+			if (answer.equals("Saving success")){
+				Main.functionalStage.close();
+			}
 		});
 		
 		

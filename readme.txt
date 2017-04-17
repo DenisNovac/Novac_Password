@@ -1,5 +1,5 @@
-﻿Novac Password Database.
-Try to open test.npdb with password test123456!
+﻿Novac Password Database v1.0
+Try to open test.npdb with password lY_e6_03b8frg067RzA5p!
 
 DO NOT KEEP SINGLE COPIES OF PASSWORDS IN ONE DB/APP. APP MAY CONTAIN BUGS!
 НЕ ХРАНИТЕ ВСЕ ПАРОЛИ В ОДНОЙ БАЗЕ. ПРИЛОЖЕНИЕ МОЖЕТ РАБОТАТЬ С ОШИБКАМИ.

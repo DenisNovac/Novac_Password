@@ -31,25 +31,19 @@ public class AddSceneViewController{
 		});
 		
 		saveButton.setOnAction( (e)->{
-			String name = nameField.getText();
-			String pass = passwordField.getText();
-			String desc = descriptionField.getText();
-			if (!Checker.noPipe(name)||!Checker.noPipe(pass)||!Checker.noPipe(desc)){
-				infoLabel.setText("Please, do not use '|' (pipe) in any field");
-				
-			} else if (inChanging!=null){ //если есть линия на замену - вставляем изменения в неё
-				inChanging.setProp(name, pass, desc);
-				DBViewController.lines.add(Main.LNULL); //добавляем пустую линию для обновления ObservableList
-				inChanging=null;//зануляем линию
-				Main.functionalStage.close();
-			} else { //если нет линии на замену - пишем новую и сразу добавляем
-				DBViewController.lines.add(
-					new Line(/**/name, pass, desc/**/) 
-				);
-				Main.functionalStage.close();
-			}
-			
-			
+			save();
+		});
+		
+		descriptionField.setOnAction((e) ->{
+			save();
+		});
+		
+		nameField.setOnAction((e) ->{
+			save();
+		});
+		
+		passwordField.setOnAction((e) ->{
+			save();
 		});
 		
 		cancelButton.setOnAction( (e)->{ //простая отмена всего
@@ -58,6 +52,25 @@ public class AddSceneViewController{
 		});
 	}
 	
+	private void save(){
+		String name = nameField.getText();
+		String pass = passwordField.getText();
+		String desc = descriptionField.getText();
+		if (!Checker.noPipe(name)||!Checker.noPipe(pass)||!Checker.noPipe(desc)){
+			infoLabel.setText("Please, do not use '|' (pipe) in any field");
+			
+		} else if (inChanging!=null){ //если есть линия на замену - вставляем изменения в неё
+			inChanging.setProp(name, pass, desc);
+			DBViewController.lines.add(Main.LNULL); //добавляем пустую линию для обновления ObservableList
+			inChanging=null;//зануляем линию
+			Main.functionalStage.close();
+		} else { //если нет линии на замену - пишем новую и сразу добавляем
+			DBViewController.lines.add(
+				new Line(/**/name, pass, desc/**/) 
+			);
+			Main.functionalStage.close();
+		}
+	}
 	
 	protected static void setLine(Line l){ //сюда передаём линию, которую желаем изменить
 		inChanging=l;

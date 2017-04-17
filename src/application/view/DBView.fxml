@@ -30,7 +30,7 @@
       <TableView fx:id="mainTable" editable="true" layoutX="130.0" layoutY="24.0" minHeight="250.0" minWidth="645.0" prefHeight="510.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn fx:id="tableName" maxWidth="225.0" minWidth="125.0" prefWidth="125.0" text="Name" />
-          <TableColumn fx:id="tablePassword" maxWidth="225.0" minWidth="150.0" prefWidth="150.0" text="Password" />
+          <TableColumn fx:id="tablePassword" maxWidth="225.0" minWidth="165.0" prefWidth="165.0" text="Password" />
             <TableColumn fx:id="tableDesc" minWidth="-1.0" prefWidth="365.0" text="Description" />
         </columns>
       </TableView>

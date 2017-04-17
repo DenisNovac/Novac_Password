@@ -17,6 +17,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage pS) {
+
 		Hasher.setAlgorithm(ALGORITHM);
 		
 		LNULL = new Line();

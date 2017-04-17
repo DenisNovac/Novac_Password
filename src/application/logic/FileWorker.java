@@ -101,22 +101,24 @@ public abstract class FileWorker {
 	
 	public static void encodeFile(File inputFile, String password){ //метод просто шифрует файл исключающим или
 		try {
-			//password=Hasher.toHash(password); //мы шифруем, используя хэш, чтобы даже самые слабые пароли стали сильнее
-			//отказался от такого метода, т.к. пароль test123456 по какой-то причине ломал программу
-			char[] passwordChar = password.toCharArray();
+			byte[] passwordBytes = password.getBytes();
 			RandomAccessFile raf = new RandomAccessFile (inputFile,"rw"); //RAF, чтобы писать в тот же бит, который только что прочли
 			int read=0; //сюда пишем ввод
 			int car=0; //каретка
+			int j=0; // счетчик положения в массиве пароля
 			while(true){
 				raf.seek(car);
 				read = raf.read();
 				if (read==-1) break;
-				for (int i=0; i<passwordChar.length; i++)
-					read^=(passwordChar[i]+i);
+				// если пароль закончился - прогоняем по новой
+				if (j==passwordBytes.length) j=0;
+				read=read^passwordBytes[j];
 				
 				raf.seek(car);
 				raf.write(read);
+				j++;
 				car++;
+				
 			}
 			raf.close();
 		}catch (Exception e){
@@ -127,40 +129,45 @@ public abstract class FileWorker {
 	
 	
 	
-	
-	
-	public static boolean decodeFile(File inputFile, String password){ //метод для проверки пароля, вписанного в начало файла
-		String passHash;
-		String isPassHash;
-		//проверяем хэш
-		try(BufferedReader br = new BufferedReader(   new InputStreamReader(new FileInputStream(inputFile), "UTF-8"))   ){
-			char[] isPassHashCh=new char[DIGLENGTH*2]; //Массив для будущего хэша, считанного из файла 
+	public static boolean decodeFile(File inputFile, String password){ // метод для проверки пароля, вписанного в начало файла
+		// проверяем хэш
+		byte[] isPassHashBytes;
+		try(BufferedInputStream br = new BufferedInputStream(   new FileInputStream(inputFile) ) ){
+			isPassHashBytes=new byte[DIGLENGTH*2]; // массив для будущего хэша, считанного из файла 
 			//128 - длина в char файла, шифрованного алгоритмом SHA-512
 			
 			for (int i=0; i<DIGLENGTH*2;i++){
-				isPassHashCh[i]=(char) br.read();
+				isPassHashBytes[i]=(byte) br.read(); // читаем хеш пароля из файла
 			}
-			//убрал защиту через хеш от пароля, ибо программу ломает пароль test123456
-			char[] passwordCh=(/*Hasher.toHash(password)*/password).toCharArray(); //выводит пароль в массив чаров
+			br.close();
 			
-			for (int i=0; i<isPassHashCh.length; i++){ //декодируем взятый из файла хэш
-				
-				for (int j=0; j<passwordCh.length; j++)
-					isPassHashCh[i]^=(passwordCh[j]+j);
-				
+			// выводит пароль в массив чаров
+			byte[] passwordBytes=password.getBytes(); 
+			int j=0; // счетчик для массива паролей
+			// декодируем взятый из файла хэш
+			for (int i=0; i<isPassHashBytes.length; i++){ 
+				if (j==passwordBytes.length) j=0;
+				isPassHashBytes[i]=(byte) (isPassHashBytes[i]^passwordBytes[j]);
+				j++;	
 			}
-			isPassHash=new String(isPassHashCh);	//пишем взятый из файла хэш в строку
-			passHash = Hasher.toHash(password); //получаем хэш от пароля
+			
 			
 		} catch (Exception e){
-			System.out.println("Error in decodeFile(): "+e);
+			System.out.println("Error in decoding file: "+e);
 			return false;
 		}
-		if (passHash.equals(isPassHash)){ //сравниваем пароль и декодированный хэш
-			return true;
-		}else {
-			return false;
+		
+		byte[] passwordHashBytes = Hasher.toHash(password).getBytes();
+		
+		boolean r=true;
+		for (int i=0; i<DIGLENGTH*2; i++){
+			if (passwordHashBytes[i]!=isPassHashBytes[i]) {
+				r=false;
+				break;
+			}
 		}
+		
+		return r;
 	}//end of decodeFile method
 	
 	
